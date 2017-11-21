@@ -27,4 +27,4 @@ def main():
         current = ethprice.get_json()
         print('ETH: ${}'.format(current['price_usd']))
         display_price(pins, current['price_usd'])
-        time.sleep(4)
+        time.sleep(10)
