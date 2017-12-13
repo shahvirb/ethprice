@@ -3,6 +3,7 @@ import glob
 import subprocess
 
 AMPY_PORT = 'COM4'
+RETRY = 3
 
 def init():
     os.environ['AMPY_PORT'] = AMPY_PORT
@@ -15,10 +16,14 @@ def find_py():
 
 
 def cmd(*args, **kwargs):
-    process = subprocess.Popen(*args, stdout=subprocess.PIPE, **kwargs)
-    #stdout = process.communicate()[0]
-    for line in process.stdout:
-        print(line.rstrip())
+    for i in range(RETRY):
+        try:
+            process = subprocess.Popen(*args, stdout=subprocess.PIPE, **kwargs)
+            for line in process.stdout:
+                print(line.rstrip())
+            break
+        except ampy.pyboard.PyboardError:
+            print("FATAL ampy.pyboard.PyboardError")
 
 
 def put_files(files):
@@ -32,7 +37,7 @@ def main():
     
     print('Current files @ {}'.format(AMPY_PORT))
     cmd(['ampy', 'ls'])
-    
+    print()
     
     files = find_py()
     put_files(files)

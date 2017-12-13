@@ -8,6 +8,7 @@ gc.collect()
 
 import leds
 pins = leds.init_pins()
+pins['D4'].on()
 
 def connect_wifi():
     import network
@@ -21,7 +22,4 @@ def connect_wifi():
     print('network config:', sta_if.ifconfig())
 
 connect_wifi()
-pins['D4'].on() # HACK - fix inverting LED
-
-import main
-main.main()
+pins['D4'].off()
