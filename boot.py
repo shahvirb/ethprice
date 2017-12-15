@@ -30,5 +30,9 @@ i2c = machine.I2C(scl=machine.Pin(5), sda=machine.Pin(4), freq=400000)
 from ssd1306 import SSD1306_I2C
 display = SSD1306_I2C(64, 48, i2c)
 
-# import main
-# main.main_loop(display)
+# Set the RTC
+import ntptime
+ntptime.settime()
+
+import main
+main.main_loop(display)
