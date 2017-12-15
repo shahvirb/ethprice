@@ -1,5 +1,5 @@
 from ssd1306 import SSD1306_I2C
-import ethprice
+import coinprice
 import leds
 import machine
 import main
@@ -24,7 +24,7 @@ def connect_wifi():
 
 
 def get_price():
-    current = ethprice.get_json()
+    current = coinprice.get_json('ethereum')
     print('ETH: ${}'.format(current['price_usd']))
     print(timestr(utime.localtime()))
     return current
@@ -45,9 +45,9 @@ def timestr(time):
     return '{:02d}:{:02d}:{:02d}'.format(h, m, s)
 
 
-def scroll_dy(display, dy)
+def scroll_dy(display, dy):
     for i in range(DISP_HEIGHT):
-        display.scroll(0, 1)
+        display.scroll(0, dy)
         display.framebuf.line(0, i, DISP_WIDTH-1, i, 0)
         display.show()
         time.sleep(0.05)

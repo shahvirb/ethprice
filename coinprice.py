@@ -3,10 +3,9 @@ try:
 except ImportError:
     import requests
 
-ETH_API_URL = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=USD&limit=1"
-
-def get_json():
-    r = requests.get(ETH_API_URL)
+def get_json(name):
+    url = "https://api.coinmarketcap.com/v1/ticker/{}/?convert=USD&limit=1".format(name)
+    r = requests.get(url)
     json = r.json()
     #print(r)
     #print(r.content)
