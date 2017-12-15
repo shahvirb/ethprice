@@ -9,6 +9,9 @@ import time
 import utime
 
 
+DISP_HEIGHT = 48
+DISP_WIDTH = 64
+
 def connect_wifi():
     sta_if = network.WLAN(network.STA_IF)
     if not sta_if.isconnected():
@@ -42,6 +45,14 @@ def timestr(time):
     return '{:02d}:{:02d}:{:02d}'.format(h, m, s)
 
 
+def scroll_dy(display, dy)
+    for i in range(DISP_HEIGHT):
+        display.scroll(0, 1)
+        display.framebuf.line(0, i, DISP_WIDTH-1, i, 0)
+        display.show()
+        time.sleep(0.05)
+
+
 def main():
     # Create i2c bus and init display
     i2c = machine.I2C(scl=machine.Pin(5), sda=machine.Pin(4), freq=400000)
@@ -59,9 +70,6 @@ def main():
     while True:
         price = get_price()
         display_price(display, price)
-        # for i in range(48):
-        #     display.scroll(0, 1); display.show()
-        #     time.sleep(0.1)
         time.sleep(30)
 
 
