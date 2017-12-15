@@ -4,10 +4,10 @@ from machine import Pin
 
     # GPIO Pin #, Pin Mode, Inverted
 wemos_map = {
-    'D0': (16, Pin.OUT, False),
-    'D1': (5, Pin.OUT, False),
-    'D2': (4, Pin.OUT, False),
-    'D3': (0, Pin.OUT, False),
+    # 'D0': (16, Pin.OUT, False),
+    # 'D1': (5, Pin.OUT, False),
+    # 'D2': (4, Pin.OUT, False),
+    # 'D3': (0, Pin.OUT, False),
     'D4': (2, Pin.OUT, True)
 }
 
